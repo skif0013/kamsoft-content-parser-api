@@ -42,6 +42,10 @@ public class ParseService
         {
             return Result<ParseResponse>.Failure(ex.Message);
         }
+        catch (System.Text.Json.JsonException ex)
+        {
+            return Result<ParseResponse>.Failure($"Invalid JSON format: {ex.Message}");
+        }
 
         return Result<ParseResponse>.Success(new ParseResponse
         {
